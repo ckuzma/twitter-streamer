@@ -1,4 +1,5 @@
 ## Import standard packages
+import datetime
 import json
 import re
 
@@ -26,11 +27,15 @@ def make_fixed_length(text, desired_len):
         return text
 
 def pretty_print_tweet(tweet):
+    # Get account name, tweet
     account_name = tweet['user']['screen_name']
     tweet_text = tweet['text']
+
+    # Clean up the tweet text to remove emoji and garbage
     tweet_text = re.sub(r'([^\s\w]|_)|\n|\r', '', tweet_text)
 
-    print('@' + make_fixed_length(account_name, 9) + ' | ' + make_fixed_length(tweet_text, 100))
+    # Print it nicely
+    print(datetime.datetime.now().strftime("%H:%M:%S") + ' | @' + make_fixed_length(account_name, 9) + ' | ' + make_fixed_length(tweet_text, 100))
 
 class StdOutListener(StreamListener):
     def __init__(self):
