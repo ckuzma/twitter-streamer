@@ -2,9 +2,9 @@
 
 ## Description
 
-![screenshot]()
+![twitter-streamer.png](twitter-streamer.png)
 
-The [twitter-streamer](https://github.com/ckuzma/twitter-streamer) widget/app was written as a test utility for another Python application.  However, it developed into a neat little visual livetime display of tweets as they happen with relation to particular topics.  Run in the corner of one's display, it offers a glimpse of what is happening anywhere in the world that is of interest.
+The [twitter-streamer](https://github.com/ckuzma/twitter-streamer) widget/app was written as a test utility for another Python application.  However, it developed into a neat little visual livetime display of tweets as they happen with relation to particular topics.  Run in the corner of one's display, it offers a glimpse of what is happening anywhere in the world that is of interest.  (The example above shows a short run with "tesla" used as the topic phrase.)
 
 ## How to use
 0. Ensure your system fulfills the requirements by first installing Python 3.x and then installing the required Python libraries like so:
