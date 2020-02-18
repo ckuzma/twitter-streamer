@@ -9,17 +9,36 @@ from tweepy import OAuthHandler, Stream
 ## Import our Credentials
 CREDENTIALS = json.loads(open('creds.json', 'r').read())
 
+def make_fixed_length(text, desired_len):
+    """
+    Takes a length of text and either cuts it down to
+    size or adds a space buffer to the end of it.
+    """
+    if len(text) == desired_len:
+        return text
+    if len(text) > desired_len:
+        return text[0:desired_len]
+    if len(text) < desired_len:
+        x = len(text)
+        while x < desired_len:
+            text = text + ' '
+            x+=1
+        return text
+
 def pretty_print_tweet(tweet):
-    tweet['text'] = re.sub(r'([^\s\w]|_)|\n|\r', '', tweet['text'])
-    print(tweet['text'] + '\t(@' + tweet['user']['screen_name'] + ')')
+    account_name = tweet['user']['screen_name']
+    tweet_text = tweet['text']
+    tweet_text = re.sub(r'([^\s\w]|_)|\n|\r', '', tweet_text)
+
+    print('@' + make_fixed_length(account_name, 9) + ' | ' + make_fixed_length(tweet_text, 100))
 
 class StdOutListener(StreamListener):
-    """ A listener handles tweets that are received from the stream.
-    This is a basic listener that just prints received tweets to stdout.
-    """
+    def __init__(self):
+        pass
+
     def on_data(self, data):
-        tweet = json.loads(data)
         try:
+            tweet = json.loads(data)
             pretty_print_tweet(tweet)
         except:
             pass
@@ -40,4 +59,4 @@ class Twitter:
 
 if __name__ == '__main__':
     streamer = Twitter()
-    streamer.print_live_stream(['alexa', 'echo'])
+    streamer.print_live_stream(CREDENTIALS['topics'])

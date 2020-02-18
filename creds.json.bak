@@ -2,5 +2,8 @@
     "c_key": "consumer key",
     "c_secret": "consumer secret",
     "a_token": "app token",
-    "a_token_secret": "app secret"
+    "a_token_secret": "app secret",
+    "topics": [
+        "test"
+    ]
 }
